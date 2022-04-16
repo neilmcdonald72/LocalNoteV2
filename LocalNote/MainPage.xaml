@@ -1,0 +1,110 @@
+﻿<Page
+    x:Class="LocalNote.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:LocalNote"
+    xmlns:models="using:LocalNote.Models"
+    xmlns:vm="using:LocalNote.ViewModels"
+    xmlns:commands="using:LocalNote.Commands"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <CollectionViewSource x:Name="NotesCollection" Source="{x:Bind NoteViewModel.NotesForLV}"/>
+    </Page.Resources>
+
+    <Page.TopAppBar>
+        <CommandBar>
+            <CommandBar.Content>
+                <TextBlock x:Name="NoteTitle" Text="{x:Bind NoteViewModel.NoteTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="10" />
+            </CommandBar.Content>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton x:Name="About" Label="About"
+                              Command="{x:Bind AboutCommand}"></AppBarButton>
+                <AppBarButton x:Name="Exit" Label="Exit"
+                              Command="{x:Bind NoteViewModel.ExitCommand}"></AppBarButton>
+            </CommandBar.SecondaryCommands>
+            <AppBarButton Icon="Add" Label="Add"
+                          ToolTipService.ToolTip="Add Note"
+                          Command="{x:Bind NoteViewModel.AddCommand}"></AppBarButton>
+            <AppBarButton Icon="Save" Label="Save"
+                          ToolTipService.ToolTip="Save Note"
+                          Command="{x:Bind NoteViewModel.SaveCommand}"></AppBarButton>
+            <AppBarButton Icon="Edit" Label="Edit"
+                          ToolTipService.ToolTip="Edit Note"
+                          Command="{x:Bind NoteViewModel.EditCommand}"></AppBarButton>
+            <AppBarButton Icon="Cancel" Label="Cancel"
+                          ToolTipService.ToolTip="Cancel Edit"
+                          Command="{x:Bind NoteViewModel.CancelCommand}"></AppBarButton>
+            <AppBarSeparator/>
+            <AppBarButton Icon="Delete" Label="Delete"
+                          ToolTipService.ToolTip="Delete Note"
+                          Command="{x:Bind NoteViewModel.DeleteCommand}"></AppBarButton>
+        </CommandBar>
+    </Page.TopAppBar>
+
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton 
+                Icon="FontIncrease" Label="Increase Font Size"
+                ToolTipService.ToolTip="Increases the font size of the highlighted text."
+                Command="{x:Bind NoteViewModel.FontIncrease}"/>
+            <AppBarButton 
+                Icon="FontDecrease" Label="Decrease Font Size"
+                ToolTipService.ToolTip="Decreases the font size of the highlighted text."
+                Command="{x:Bind NoteViewModel.FontDecrease}"/>
+            <AppBarSeparator/>
+            <AppBarButton 
+                Icon="Bold" Label="Bold"
+                ToolTipService.ToolTip="Bolds the highlighted text."
+                Command="{x:Bind NoteViewModel.BoldCommand}"/>
+            <AppBarButton 
+                Icon="Italic" Label="Italic"
+                ToolTipService.ToolTip="Italicizes the highlighted text."
+                Command="{x:Bind NoteViewModel.ItalicCommand}"/>
+            <AppBarButton 
+                Icon="Underline" Label="Underline"
+                ToolTipService.ToolTip="Underlines the highlighted text."
+                Command="{x:Bind NoteViewModel.UnderlineCommand}"/>
+        </CommandBar>
+    </Page.BottomAppBar>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="29*"/>
+            <RowDefinition Height="471*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="117*"/>
+            <ColumnDefinition Width="383*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBox x:Name="SearchBox" Grid.Row="0" Grid.Column="0"
+                 PlaceholderText="Search notes" FontSize="16"
+                 Text="{x:Bind NoteViewModel.Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <ListView 
+            x:Name="notesListView" Grid.Column="0"
+            ItemsSource="{Binding Source={StaticResource NotesCollection}}"
+            SelectedItem="{x:Bind NoteViewModel.SelectedNote, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            Margin="0,5,0,0" Grid.Row="1" >
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="models:NoteModel">
+                    <TextBlock Text="{x:Bind Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="18"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <RichEditBox 
+            x:Name="editor"
+            Grid.RowSpan="2" Grid.Column="1"
+            PlaceholderText="Type your note here..."
+            TextWrapping="Wrap" 
+            Padding="10"
+            FontSize="18"
+            IsReadOnly="{x:Bind NoteViewModel.ReadOnly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            TextChanged="Editor_TextChanged"/>
+    </Grid>
+</Page>
