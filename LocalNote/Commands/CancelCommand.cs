@@ -11,17 +11,14 @@ namespace LocalNote.Commands {
         public event EventHandler CanExecuteChanged;
         private readonly NoteViewModel vm;
 
-        /// <summary>
         /// Constructor
-        /// </summary>
         /// <param name="vm">The note view model.</param>
         public CancelCommand(NoteViewModel vm) {
             this.vm = vm;
         }
 
-        /// <summary>
+
         /// Returns true if the command can be executed. Returns false otherwise.
-        /// </summary>
         /// <param name="parameter"></param>
         /// <returns></returns>
         public bool CanExecute(object parameter) {
@@ -29,9 +26,8 @@ namespace LocalNote.Commands {
             else return false;
         }
 
-        /// <summary>
+
         /// Executes the command.
-        /// </summary>
         /// <param name="parameter"></param>
         public void Execute(object parameter) {
             // Notify that the edit mode value has changed
@@ -50,9 +46,7 @@ namespace LocalNote.Commands {
             vm.EditCommand.FireCanExecuteChanged();
         }
 
-        /// <summary>
         /// Firest the CanExecuteChanged event.
-        /// </summary>
         public void FireCanExecuteChanged() {
             CanExecuteChanged?.Invoke(this, EventArgs.Empty);
         }

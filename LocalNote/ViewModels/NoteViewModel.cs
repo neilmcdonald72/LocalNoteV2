@@ -50,17 +50,13 @@ namespace LocalNote.ViewModels {
         public UnderlineCommand UnderlineCommand { get; set; }
         #endregion
 
-        /// <summary>
         /// Default constructor.
-        /// </summary>
         public NoteViewModel() {
             Init();
             LoadNotesFromDatabase();
         }
 
-        /// <summary>
         /// Constructor with editor parameter.
-        /// </summary>
         /// <param name="editor"></param>
         public NoteViewModel(RichEditBox editor) {
             this.editor = editor;
@@ -260,9 +256,7 @@ namespace LocalNote.ViewModels {
         }
         #endregion
 
-        /// <summary>
         /// Properties initializer
-        /// </summary>
         private void Init() {
             notes = new ObservableCollection<NoteModel>();
             notesForLV = new ObservableCollection<NoteModel>();
@@ -281,17 +275,13 @@ namespace LocalNote.ViewModels {
             ReadOnly = true;
         }
 
-        /// <summary>
         /// Fires the PropertyChanged event with the given property name.
-        /// </summary>
         /// <param name="property"></param>
         public void FirePropertyChanged(string property) {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
         }
 
-        /// <summary>
         /// Performs a filter on the notes list based on the filter property.
-        /// </summary>
         private void PerformFilter() {
             if (this.filter == null) {
                 filter = "";
@@ -329,9 +319,8 @@ namespace LocalNote.ViewModels {
             }
         }
 
-        /// <summary>
         /// Loads each note's data from file.
-        /// </summary>
+
         private async void LoadNotes() {
             // Get the folder where the notes are stored
             // Then get all the files within that folder
@@ -349,9 +338,8 @@ namespace LocalNote.ViewModels {
             }
         }
 
-        /// <summary>
         /// Loads each note's data from database.
-        /// </summary>
+
         private async void LoadNotesFromDatabase() {
             notes = await Repositories.DatabaseRepo.GetNotes();
 

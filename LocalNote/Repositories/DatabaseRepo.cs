@@ -12,9 +12,7 @@ namespace LocalNote.Repositories {
     public static class DatabaseRepo {
         private static readonly string conn = "Filename=notesDb.db";
 
-        /// <summary>
         /// Initializes the database.
-        /// </summary>
         public static async void InitializeDB() {
             using (var db = new SqliteConnection(conn)) {
                 // Open the database
@@ -42,9 +40,7 @@ namespace LocalNote.Repositories {
             }
         }
 
-        /// <summary>
         /// Drops the table that was initialized. Used for testing.
-        /// </summary>
         public static async void DropDB() {
             using (var db = new SqliteConnection(conn)) {
                 // Open the database
@@ -68,9 +64,7 @@ namespace LocalNote.Repositories {
             }
         }
 
-        /// <summary>
         /// Adds a note to the database.
-        /// </summary>
         /// <param name="note">The note to be added.</param>
         public static async void AddNote(NoteModel note) {
             using (var db = new SqliteConnection(conn)) {
@@ -105,9 +99,7 @@ namespace LocalNote.Repositories {
             }
         }
 
-        /// <summary>
         /// Updates a note record in the database.
-        /// </summary>
         /// <param name="note">The note to be updated.</param>
         public static async void UpdateNote(NoteModel note) {
             using (var db = new SqliteConnection(conn)) {
@@ -143,9 +135,7 @@ namespace LocalNote.Repositories {
             }
         }
 
-        /// <summary>
         /// Deletes a note record in the database.
-        /// </summary>
         /// <param name="note">The note to be deleted.</param>
         public static async void DeleteNote(NoteModel note) {
             using (var db = new SqliteConnection(conn)) {
@@ -179,9 +169,8 @@ namespace LocalNote.Repositories {
             }
         }
 
-        /// <summary>
+
         /// Gets the specific note from the database based on the title given.
-        /// </summary>
         /// <param name="title">The title of the note.</param>
         /// <returns>The note model of the specific note.</returns>
         public async static Task<NoteModel> GetNote(string title) {
@@ -225,9 +214,7 @@ namespace LocalNote.Repositories {
             return note;
         }
 
-        /// <summary>
         /// Gets all the notes from the database.
-        /// </summary>
         /// <returns>The notes collection</returns>
         public async static Task<ObservableCollection<NoteModel>> GetNotes() {
             ObservableCollection<NoteModel> notes = new ObservableCollection<NoteModel>();
@@ -259,9 +246,7 @@ namespace LocalNote.Repositories {
             return notes;
         }
 
-        /// <summary>
         /// Checks if the note already exist in the database.
-        /// </summary>
         /// <param name="note">The note to be checked.</param>
         /// <returns>True if it does, otherwise returns false.</returns>
         public async static Task<bool> NoteExist(NoteModel note) {

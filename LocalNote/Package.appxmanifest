@@ -7,7 +7,7 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="17514a28-b8af-492b-b0db-461b8d6b0889"
+    Name="LocalNote"
     Publisher="CN=Kevin"
     Version="1.0.0.0" />
 
@@ -15,7 +15,7 @@
 
   <Properties>
     <DisplayName>LocalNote</DisplayName>
-    <PublisherDisplayName>ConcernedKevin Ltd.</PublisherDisplayName>
+    <PublisherDisplayName>Neil McDonald</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 

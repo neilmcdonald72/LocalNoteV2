@@ -13,26 +13,20 @@ namespace LocalNote.Commands {
         public event EventHandler CanExecuteChanged;
         private readonly ViewModels.NoteViewModel noteViewModel;
 
-        /// <summary>
         /// Constructor
-        /// </summary>
         /// <param name="noteViewModel"></param>
         public ExitCommand(ViewModels.NoteViewModel noteViewModel) {
             this.noteViewModel = noteViewModel;
         }
 
-        /// <summary>
         /// Returns true if the command can be executed. Returns false otherwise.
-        /// </summary>
         /// <param name="parameter"></param>
         /// <returns></returns>
         public bool CanExecute(object parameter) {
             return true;
         }
 
-        /// <summary>
         /// Executes the command.
-        /// </summary>
         /// <param name="parameter"></param>
         public async void Execute(object parameter) {
             // Check if there are any unsaved changes
@@ -60,9 +54,7 @@ namespace LocalNote.Commands {
             }
         }
 
-        /// <summary>
         /// Fires the CanExecuteChanged event.
-        /// </summary>
         public void FireCanExecuteChanged() {
             CanExecuteChanged?.Invoke(this, EventArgs.Empty);
         }

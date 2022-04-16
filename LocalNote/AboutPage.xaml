@@ -43,17 +43,18 @@
 
                 <TextBlock Grid.Row="2" Grid.Column="0" Text="Publisher:"/>
                 <TextBlock Grid.Row="2" Grid.Column="1" x:Name="publisher" 
-                       TextWrapping="Wrap" Text="ConcernedCat Ltd."/>
+                       TextWrapping="Wrap" Text="Neil Works LTD"/>
 
                 <TextBlock Grid.Row="3" Grid.Column="0" Text="Copyright:"/>
                 <TextBlock Grid.Row="3" Grid.Column="1" x:Name="copyright" 
-                       TextWrapping="Wrap" Text="ConcernedCat 2021"/>
+                       TextWrapping="Wrap" Text="Neil Works LTD"/>
             </Grid>
 
             <StackPanel Orientation="Vertical" Margin="0,100,0,0">
                 <TextBlock Text="Developer's Notes" Margin="0,0,0,40" FontSize="32"/>
                 <TextBlock Text="Known Bugs:"/>
                 <StackPanel Margin="20,0,0,0">
+                    <TextBlock TextWrapping="Wrap" Text="∙ Before a note is saved the text seems to be transparent."/>
                     <TextBlock TextWrapping="Wrap" Text="∙ On start-up, a note is selected even though the selected note behind the scenes is 'null'."/>
                     <TextBlock TextWrapping="Wrap" Text="∙ Switching notes will add a carriage return character on the currently selected note."/>
                     <TextBlock TextWrapping="Wrap" Text="∙ The added carriage return character triggers the note being saveable even though nothing was typed/changed."/>

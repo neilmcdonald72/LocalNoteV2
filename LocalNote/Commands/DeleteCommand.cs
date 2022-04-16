@@ -12,20 +12,15 @@ namespace LocalNote.Commands {
         private readonly ViewModels.NoteViewModel noteViewModel;
         private readonly Views.DeleteNoteDialog delete;
 
-        /// <summary>
         /// Constructor
-        /// </summary>
         /// <param name="noteViewModel"></param>
         public DeleteCommand(ViewModels.NoteViewModel noteViewModel) {
             this.noteViewModel = noteViewModel;
             this.delete = new Views.DeleteNoteDialog();
         }
 
-        /// <summary>
         /// Returns true if the command can be executed. Returns false otherwise.
-        /// </summary>
         /// <param name="parameter"></param>
-        /// <returns></returns>
         public bool CanExecute(object parameter) {
             // If there are no note selected or
             // if the current note hasn't been saved yet (ie. The Buffer Note)
@@ -36,9 +31,7 @@ namespace LocalNote.Commands {
             return true;
         }
 
-        /// <summary>
         /// Executes the command.
-        /// </summary>
         /// <param name="parameter"></param>
         public async void Execute(object parameter) {
             ContentDialogResult result = await delete.ShowAsync();
@@ -72,9 +65,7 @@ namespace LocalNote.Commands {
             }
         }
 
-        /// <summary>
         /// Fires the CanExecuteChanged event.
-        /// </summary>
         public void FireCanExecuteChanged() {
             this.CanExecuteChanged?.Invoke(this, EventArgs.Empty);
         }

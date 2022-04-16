@@ -16,7 +16,7 @@
                 A rich text-editor built using the UWP Framework.
             </TextBlock>
             <TextBlock Margin="0,20,0,0">
-                LocalNote © 2020 Kevin Orenday
+                LocalNote © 2022 Neil McDonald
             </TextBlock>
         </StackPanel>
     </Grid>
